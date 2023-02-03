@@ -1,7 +1,12 @@
-# publishing
-
+# Building
 ```bash
 yarn build
-cd package
+```
+
+# Publishing
+
+```bash
+cd .svelte-kit/package
+yarn lint && yarn format
 npm publish
 ```
