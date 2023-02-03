@@ -16,7 +16,7 @@ npm install --save-dev svelte-maybe-transition
 Using Yarn:
 
 ```bash
-yarn add -D svelte-dynamic-transitions
+yarn add -D svelte-maybe-transition
 ```
 
 ## Basic usage
