@@ -54,32 +54,32 @@ Since Svelte's `crossfade` transition is a bit special it's split into its own f
 
 ```html
 <script>
-    import { maybe, maybeCrossfade } from 'svelte-maybe-transition';
+  import { maybe, maybeCrossfade } from 'svelte-maybe-transition';
     
-    const enable = true,
-        commonParams = {
-            enable,
-            duration: 500,
-            delay: 250
-        };
+  const enable = true,
+    commonParams = {
+      enable,
+      duration: 500,
+      delay: 250
+    };
+
+  // Since 'crossfade' requires a fallback transition if there is no element to send
+  // or no element to receive, we construct a fallback 'maybe' fade transition here
+  const fallback = maybe({
+      fn: 'fade',
+      ...commonParams
+  });
     
-    // Since 'crossfade' requires a fallback transition if there is no element to send
-    // or no element to receive, we construct a fallback 'maybe' fade transition here
-    const fallback = maybe({
-        fn: 'fade',
+  $: [send, receive] = maybeCrossfade({
+        fallback,
         ...commonParams
     });
-    
-    $: [ send, receive ] = maybeCrossfade({
-            fallback,
-            ...commonParams
-        });
 </script>
 
 {#if condition}
-	<h1 in:send={{key}} out:receive={{key}}>BIG ELEM</h1>
+  <h1 in:send={{key}} out:receive={{key}}>BIG ELEM</h1>
 {:else}
-	<small in:send={{key}} out:receive={{key}}>small elem</small>
+  <small in:send={{key}} out:receive={{key}}>small elem</small>
 {/if}
 ```
 
