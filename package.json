@@ -1,6 +1,6 @@
 {
   "name": "svelte-maybe-transition",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Super-simple Svelte transition utility for on-the-fly enabling and modification of element transitions",
   "author": "kiosion",
   "license": "MIT",
