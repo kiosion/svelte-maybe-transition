@@ -35,64 +35,89 @@
 
 <svelte:head>
   <title>svelte-maybe-transition</title>
-  <meta name="description" content="Svelte transitions utility that allows on-the-fly enabling/disabling and customizing of element transitions." />
+  <meta
+    name="description"
+    content="Svelte transitions utility that allows on-the-fly enabling/disabling and customizing of element transitions."
+  />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  />
 </svelte:head>
 
 <div class="layout-container">
   <div class="title">
     <h1>svelte-maybe-transition</h1>
-    <p>This page is fully static! Test out the options below to see the util in action</p>
+    <p>
+      This page is fully static! Test out the options below to see the util in
+      action
+    </p>
   </div>
 
   <div class="options">
-      <h2>Transition options</h2>
+    <h2>Transition options</h2>
+    <div>
+      <label for="transition-enable">Enable transition</label>
+      <input
+        id="transition-enable"
+        type="checkbox"
+        bind:checked={transition.enable}
+      />
+    </div>
+    <div>
+      <label for="transition-type">Transition type</label>
+      <select id="transition-type" bind:value={transition.fn}>
+        <option value="blur">blur</option>
+        <option value="fade">fade</option>
+        <option value="fly">fly</option>
+        <option value="slide">slide</option>
+        <option value="scale">scale</option>
+      </select>
+    </div>
+    {#if transition.fn === 'fly'}
       <div>
-        <label for="transition-enable">Enable transition</label>
-        <input id="transition-enable" type="checkbox" bind:checked={transition.enable} />
+        <label for="transition-fly-direction">Fly to +/- x</label>
+        <input
+          id="transition-fly-direction"
+          type="number"
+          bind:value={transition.flyX}
+        />
       </div>
       <div>
-        <label for="transition-type">Transition type</label>
-        <select id="transition-type" bind:value={transition.fn}>
-          <option value="blur">blur</option>
-          <option value="fade">fade</option>
-          <option value="fly">fly</option>
-          <option value="slide">slide</option>
-          <option value="scale">scale</option>
-        </select>
+        <label for="transition-fly-y">Fly to +/- y</label>
+        <input
+          id="transition-fly-y"
+          type="number"
+          bind:value={transition.flyY}
+        />
       </div>
-      {#if transition.fn === 'fly'}
-        <div>
-          <label for="transition-fly-direction">Fly to +/- x</label>
-          <input id="transition-fly-direction" type="number" bind:value={transition.flyX} />
-        </div>
-        <div>
-          <label for="transition-fly-y">Fly to +/- y</label>
-          <input id="transition-fly-y" type="number" bind:value={transition.flyY} />
-        </div>
-      {/if}
-      <div>
-        <label for="transition-duration">Transition duration</label>
-        <input id="transition-duration" type="number" bind:value={transition.duration} />
-      </div>
-      <div>
-        <label for="transition-easing">Transition easing</label>
-        <select id="transition-easing" bind:value={transition.easing}>
-          <option value="linear">linear</option>
-          <option value="quadInOut">quad</option>
-          <option value="cubicInOut">cubic</option>
-          <option value="quartInOut">quart</option>
-          <option value="quintInOut">quint</option>
-          <option value="sinInOut">sin</option>
-          <option value="expInOut">exp</option>
-          <option value="circleInOut">circle</option>
-          <option value="backInOut">back</option>
-          <option value="bounceInOut">bounce</option>
-          <option value="elasticInOut">elastic</option>
-        </select>
-      </div>
+    {/if}
+    <div>
+      <label for="transition-duration">Transition duration</label>
+      <input
+        id="transition-duration"
+        type="number"
+        bind:value={transition.duration}
+      />
+    </div>
+    <div>
+      <label for="transition-easing">Transition easing</label>
+      <select id="transition-easing" bind:value={transition.easing}>
+        <option value="linear">linear</option>
+        <option value="quadInOut">quad</option>
+        <option value="cubicInOut">cubic</option>
+        <option value="quartInOut">quart</option>
+        <option value="quintInOut">quint</option>
+        <option value="sinInOut">sin</option>
+        <option value="expInOut">exp</option>
+        <option value="circleInOut">circle</option>
+        <option value="backInOut">back</option>
+        <option value="bounceInOut">bounce</option>
+        <option value="elasticInOut">elastic</option>
+      </select>
+    </div>
   </div>
 
   <div
@@ -134,7 +159,6 @@
 <style lang="scss">
   $unit: 1rem;
 
-
   :global(body, div, p, span, h1, h2, h3) {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -157,13 +181,13 @@
   .title {
     display: flex;
     flex-direction: column;
-    gap: $unit * .5;
+    gap: $unit * 0.5;
   }
 
   .options {
     display: flex;
     flex-direction: column;
-    gap: .8rem;
+    gap: 0.8rem;
   }
 
   .preview {
